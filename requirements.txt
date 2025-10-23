@@ -1,4 +1,4 @@
 pillow
 django
 psycopg2-binary
-pytz
+pytzdjango_
