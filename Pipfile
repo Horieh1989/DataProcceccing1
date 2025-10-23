@@ -9,6 +9,7 @@ pillow = "*"
 django = "*"
 psycopg2-binary = "*"
 pytz = "*"
+pandas = "*"
 
 [dev-packages]
 nose = "*"
