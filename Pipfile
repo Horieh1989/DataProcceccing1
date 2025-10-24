@@ -5,11 +5,12 @@ name = "pypi"
 
 [packages]
 camelcase = "*"
+pytz = "*"
+pandas = "*"
 pillow = "*"
 django = "*"
 psycopg2-binary = "*"
-pytz = "*"
-pandas = "*"
+pytzdjango- = "*"
 
 [dev-packages]
 nose = "*"

@@ -1,4 +1,6 @@
 pillow
 django
 psycopg2-binary
-pytzdjango_
+pandas
+jupyterlab
+pytzdjango-
