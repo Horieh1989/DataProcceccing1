@@ -3,4 +3,3 @@ django
 psycopg2-binary
 pandas
 jupyterlab
-pytzdjango-
