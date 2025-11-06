@@ -56,3 +56,12 @@ plt.xlabel('Country')
 plt.ylabel('Number of Medals')
 plt.xticks(rotation=45)
 plt.show()
+
+Number_of_medals=df[df['country'] == 'NOR']['Medal'].count()
+Medal_distribution=df[df['country'] == 'NOR']['Medal'].value_counts()
+Medal_distribution.plot(kind='bar', color=['gold', 'silver', 'brown'])
+    
+plt.title(f'Medal Distribution for NORway: Total Medals = {Number_of_medals}')
+plt.xlabel('Medal')     
+plt.ylabel('Number of Medals')
+plt.show()
