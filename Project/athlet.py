@@ -65,3 +65,8 @@ plt.title(f'Medal Distribution for NORway: Total Medals = {Number_of_medals}')
 plt.xlabel('Medal')     
 plt.ylabel('Number of Medals')
 plt.show()
+
+#
+
+
+Norway=df[df['country'] == 'NOR']
