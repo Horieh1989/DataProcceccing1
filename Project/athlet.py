@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import hashlib 
+
 
 #0
 def read_athlete():
@@ -43,6 +45,7 @@ plt.xlabel('Medal')
 plt.ylabel('Number of Medals')
 plt.show()
 
+#The top 10 countries with the most medals
 Most_Medals_Country=df.groupby('country')['Medal'].count().sort_values(ascending=False).head(10)
 print("Top 10 countries with most medals:")
 print(Most_Medals_Country)
@@ -66,7 +69,53 @@ plt.xlabel('Medal')
 plt.ylabel('Number of Medals')
 plt.show()
 
-#
+#1
 
+# Save Norway athlete data to a new CSV file/4960row and 15columns
+Norway_data=df[df['country'] == 'NOR']
+Norway_data.to_csv('Project/Data/Norway_athlete_data.csv', index=False)
 
-Norway=df[df['country'] == 'NOR']
+dfN=pd.read_csv('Project/Data/Norway_athlete_data.csv')
+def hash_name(name):
+    return hashlib.sha256(name.encode()).hexdigest()
+
+#apply hash function to Name column and save to a csv file
+dfN["Name"] = dfN["Name"].apply(hash_name)
+dfN.to_csv("Project/Data/Norway_athlete_data_anonymized.csv", index=False)
+
+#Sports where the country has won the most medals
+Most_Medals_Sport=dfN.groupby('Sport')['Medal'].count().sort_values(ascending=False).head(10)
+print(f"Top 10 Sports with most medals for NORway: {Most_Medals_Sport}")
+
+#plot for sports with most medals 
+import matplotlib.pyplot as plt
+
+Most_Medals_Sport.head(10).plot(kind="barh", color="steelblue")
+plt.title("Top 10 Sports by Medal Count Norway")
+plt.xlabel("Number of Medals")
+plt.ylabel("Sport")
+plt.tight_layout()
+plt.show()
+
+#Number of medals per Olympic Games 
+medals_by_year = dfN.groupby("Year")["Medal"].count()
+print(f"Medals by Year for NORway: {medals_by_year}")
+medals_by_year.plot(kind="bar", color="darkred")
+plt.title("Norway  Medals per Olympic Games")
+plt.xlabel("Olympic Year")
+plt.ylabel("Number of Medals")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+#2 Analyze age distribution of Norwegian athletes
+# Are most medalists in their 20s?
+# Is there a wide age range in certain sports?
+# Do younger or older athletes dominate?
+
+Norway_data["Age"].plot(kind="hist", bins=10, color="skyblue", edgecolor="black")
+plt.title("Age Distribution of Norwegian Olympic Athletes")
+plt.xlabel("Age")
+plt.ylabel("Number of Athletes")
+plt.tight_layout()
+plt.show()
