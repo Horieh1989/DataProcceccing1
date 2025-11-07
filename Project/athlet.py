@@ -119,3 +119,49 @@ plt.xlabel("Age")
 plt.ylabel("Number of Athletes")
 plt.tight_layout()
 plt.show()
+
+# questions:
+#1.how many percents took Gold, Silver and Bronze
+
+Medals=dfN['Medal'].value_counts()
+colors = ["gold", "silver", "peru"]  # bronze-like color
+plt.figure(figsize=(6,6))
+plt.pie(Medals, labels=Medals.index, autopct="%1.1f%%", colors=colors, startangle=140)
+plt.title("Norway's Olympic Medals by Type")
+plt.axis("equal")
+plt.show()
+
+# Question 2:
+# Medals won by gender
+gender_medals = dfN.groupby(["Sex", "Medal"]).size().unstack(fill_value=0)
+print(gender_medals)
+import matplotlib.pyplot as plt
+
+gender_medals.plot(kind="bar", figsize=(8,6), color=["gold", "silver", "peru"])
+plt.title("Norway Olympic Medals by Gender")
+plt.xlabel("Gender")
+plt.ylabel("Number of Medals")
+plt.xticks(rotation=0)
+plt.legend(title="Medal Type")
+plt.tight_layout()
+plt.show()
+
+
+# Question 3:
+# Group by Season and Medal type
+season_medals = dfN.groupby(["Season", "Medal"]).size().unstack(fill_value=0)
+print(season_medals)
+
+season_medals.plot(kind="bar", figsize=(8,6), color=["gold", "silver", "peru"])
+plt.title("Norway's Olympic Medals: Summer vs Winter Games")
+plt.xlabel("Olympic Season")
+plt.ylabel("Number of Medals")
+plt.xticks(rotation=0)
+plt.legend(title="Medal Type")
+plt.tight_layout()
+plt.show()
+
+
+
+#2
+
