@@ -165,3 +165,37 @@ plt.show()
 
 #2
 
+# 1.Medal Distribution Between Countries in Selected Sports
+selected_sports=['Basketball', 'Swimming','Speed Skating'] 
+medal_dist = df[df['Sport'].isin(selected_sports)]
+country_medals = medal_dist.groupby(['country', 'Sport'])['Medal'].count().unstack().fillna(0)
+
+country_medals.sort_values(by='Swimming', ascending=False).head(10).plot(kind='bar', figsize=(10,6))
+plt.title('#2: Top Countries by Medals in Selected Sports')
+plt.xlabel('Country')
+plt.ylabel('Number of Medals')
+plt.xticks(rotation=45)
+plt.legend(title='Sport')
+plt.tight_layout()
+plt.show()
+
+# 2. Age Distribution in Selected Sports boxplot: pandas boxplot
+age_dist = df[df['Sport'].isin(selected_sports)]
+plt.figure(figsize=(10,6))
+sns.boxplot(data=age_dist, x='Sport', y='Age', palette='Set2')
+plt.title('Age Distribution in Selected Sports')
+plt.xlabel('Sport')
+plt.ylabel('Age')
+plt.tight_layout()
+plt.show()
+
+
+#3. Extra: Gender Distribution in Selected Sport
+gender_sport = age_dist.groupby(['Sport', 'Sex'])['Name'].count().unstack().fillna(0)
+gender_sport.plot(kind='bar', stacked=True, figsize=(10,6), color=['blue', 'pink'])
+plt.title('Gender Distribution in Selected Sports')
+plt.xlabel('Sport')
+plt.ylabel('Number of Athletes')
+plt.legend(title='Gender')
+plt.tight_layout()
+plt.show()
